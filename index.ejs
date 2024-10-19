@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Directory</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Teacher Directory</h1>
+    </header>
+    <main>
+        <section id="teacherList">
+            <h2>Our Teachers</h2>
+            <% if (teachers && teachers.length > 0) { %>
+                <ul>
+                    <% teachers.forEach(teacher => { %>
+                        <li>
+                            <h3><%= teacher.name %></h3>
+                            <p>Department: <%= teacher.department %></p>
+                            <% if (teacher.researchProjects && teacher.researchProjects.length > 0) { %>
+                                <h4>Research Projects:</h4>
+                                <ul>
+                                    <% teacher.researchProjects.forEach(project => { %>
+                                        <li><%= project %></li>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
+                            <% if (teacher.patents && teacher.patents.length > 0) { %>
+                                <h4>Patents:</h4>
+                                <ul>
+                                    <% teacher.patents.forEach(patent => { %>
+                                        <li><%= patent %></li>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No teachers found.</p>
+            <% } %>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Teacher Directory. All rights reserved.</p>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

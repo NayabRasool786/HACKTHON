@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection and Teacher Assignment System</title>
+    <style>
+        /* Basic styling */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+        }
+
+        header {
+          background-color: #35424a;
+          color: #ffffff;
+          padding: 1rem;
+          text-align: center;
+        }
+
+      
+        .cta-button {
+          display: inline-block;
+          background-color: #e8491d;
+          color: #ffffff;
+          padding: 10px 20px;
+          text-decoration: none;
+          border-radius: 5px;
+          margin-top: 20px;
+        }
+
+        .features {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 2rem;
+          height: 25vh;
+        }
+
+        .feature {
+          flex-basis: 30%;
+          background-color: #ffffff;
+          padding: 1rem;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          border-radius: 10px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+        .feature-container {
+          margin: 20px;
+          width: 95%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Navbar styling */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #2b2c2e;
+          padding-left: 50px;
+          padding-right: 50px;
+          height: 10vh;
+        }
+
+        .navbar a {
+          color: white;
+          text-decoration: none;
+          padding: 14px 20px;
+        }
+
+        .navbar a:hover {
+          background-color: #575757;
+          border-radius: 5px;
+        }
+
+        .navbar .logo {
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        .navbar .links {
+          display: flex;
+        }
+
+        .navbar .links a {
+          margin-left: 10px;
+        }
+
+        /* Dropdown menu */
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 150px;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+          border-radius: 5px;
+        }
+
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        .logo{
+          height: 60px;
+          width: 60px;
+        }
+
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .links{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .bgi{
+          background-image: url(https://images.shiksha.com/mediadata/images/1547199229phpR42zJc.jpeg);
+          height: 90vh;
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .logo-container{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 10px;
+        }
+
+        .courseselect-container {
+          margin: 20px;
+          width: 95%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+          .navbar .links {
+            flex-direction: column;
+            width: 100%;
+          }
+
+          .navbar a {
+            display: block;
+            text-align: center;
+            width: 100%;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img  class="logo" src="https://res.cloudinary.com/ddpe1sf4f/image/upload/v1729273297/logo-removebg-preview_leyedy.png" alt="Logo">
+            <div>
+              <h1>Rajeev Gandhi Memorial</h1>
+              <p>College Of Engineering & Technology</p>
+            </div>
+        </div>
+        <div class="links">
+            <a href="#home">Home</a>
+            <div class="dropdown">
+              <a href="#courses">Courses</a>
+              <div class="dropdown-content">
+                  <a href="#course1">CSE</a>
+                  <a href="#course2">CSE DS</a>
+                  <a href="#course3">CSE AI/ML</a>
+                  <a href="#course3">CSE CS</a>
+                  <a href="#course3">ECE</a>
+                  <a href="#course3">EEE</a>
+                  <a href="#course3">MECH</a>
+                  <a href="#course3">CIVIL</a>
+              </div>
+          </div>
+          <div class="dropdown">
+            <a href="#courses">Rating</a>
+            <div class="dropdown-content">
+                <a href="#course1">⭐⭐⭐⭐⭐</a>
+            </div>
+          </div>
+            
+            <div class="dropdown">
+                <a href="#account">Account</a>
+                <div class="dropdown-content">
+                    <a href="#settings">Settings</a>
+                    <a href="#logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="bgi">
+          <h1 style="font-size: 2.5rem; color: #ffffff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Welcome to Our University's Course Selection Platform</h1>
+          <p style="font-size: 1.2rem; color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); margin-top: 15px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: center;">Make informed decisions about your academic journey with our comprehensive course selection and teacher assignment system.</p>
+          <a href="#features" class="cta-button">Start Course Selection</a>
+        </div>
+
+        <div id="features" class="feature-container">
+          <div class="features">
+              <div class="feature">
+                  <h3>Course Selection</h3>
+                  <p>Choose 4 theory courses and 2 lab courses per semester from a wide range of options.</p>
+                  <a href="#courseselect" class="cta-button">Select Courses</a>
+              </div>
+              <div class="feature">
+                  <h3>Teacher Profiles</h3>
+                  <p>Access detailed teacher information including ratings, research projects, patents, and academic background.</p>
+                  <a href="#teacherprofiles" class="cta-button">View Profiles</a>
+              </div>
+              <div class="feature">
+                  <h3>Feedback System</h3>
+                  <p>Share your experience and help future students make informed decisions.</p>
+                  <a href="#feedback" class="cta-button">Submit Feedback</a>
+              </div>
+          </div>
+        </div>
+        <div id="courseselect" class="courseselect-container" style="width: 80%; margin: 0 auto;">
+            <div class="course-selection">
+                <h2>Course Selection</h2>
+                <div class="course-selection-form">
+                    <form style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 100%;">
+                        <div class="theory-courses">
+                            <h3 style="margin-bottom: 15px;">Theory Courses (Select 4)</h3>
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course1" style="margin-right: 10px;">
+                                        <span>Advanced Algorithms</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course2" style="margin-right: 10px;">
+                                        <span>Machine Learning</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course3" style="margin-right: 10px;">
+                                        <span>Database Management</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course4" style="margin-right: 10px;">
+                                        <span>Computer Networks</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course6" style="margin-right: 10px;">
+                                        <span>Artificial Intelligence</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course7" style="margin-right: 10px;">
+                                        <span>Cloud Computing</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course8" style="margin-right: 10px;">
+                                        <span>Cybersecurity</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="theory" value="course9" style="margin-right: 10px;">
+                                        <span>Data Science</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lab-courses" style="margin-top: 20px;">
+                            <h3 style="margin-bottom: 15px;">Lab Courses (Select 2)</h3>
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="lab" value="lab1" style="margin-right: 10px;">
+                                        <span>Data Structures Lab</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="lab" value="lab2" style="margin-right: 10px;">
+                                        <span>Web Development Lab</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="lab" value="lab3" style="margin-right: 10px;">
+                                        <span>Machine Learning Lab</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="lab" value="lab4" style="margin-right: 10px;">
+                                        <span>Network Security Lab</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="lab" value="lab5" style="margin-right: 10px;">
+                                        <span>IoT Lab</span>
+                                    </label>
+                                </div>
+                                <div style="flex: 1 0 calc(50% - 10px); min-width: 250px; background-color: #f9f9f9; border-radius: 5px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" name="lab" value="lab6" style="margin-right: 10px;">
+                                        <span>Cloud Computing Lab</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <button type="submit" class="cta-button" style="margin-top: 20px; width: 20%; padding: 10px; font-size: 16px; cursor: pointer;" onclick="validateSelection()">Submit Selection</button>
+                    <script>
+                        function validateSelection() {
+                            const theoryChecked = document.querySelectorAll('input[name="theory"]:checked').length;
+                            const labChecked = document.querySelectorAll('input[name="lab"]:checked').length;
+                            const alertElement = document.createElement('div');
+                            alertElement.style.position = 'fixed';
+                            alertElement.style.top = '0';
+                            alertElement.style.left = '50%';
+                            alertElement.style.transform = 'translateX(-50%)';
+                            alertElement.style.padding = '20px';
+                            alertElement.style.borderRadius = '0 0 5px 5px';
+                            alertElement.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                            alertElement.style.zIndex = '1000';
+                            alertElement.style.maxWidth = '80%';
+                            alertElement.style.textAlign = 'center';
+
+                            if (theoryChecked !== 4 || labChecked !== 2) {
+                                alertElement.textContent = 'Please select exactly 4 theory courses and 2 lab courses.';
+                                alertElement.style.backgroundColor = '#ff6b6b';
+                                alertElement.style.color = '#ffffff';
+                                alertElement.style.border = '1px solid #ff4757';
+                            } else {
+                                alertElement.textContent = 'Selection successful!';
+                                alertElement.style.backgroundColor = '#4ecdc4';
+                                alertElement.style.color = '#ffffff';
+                                alertElement.style.border = '1px solid #45b7aa';
+                                // Here you can add code to submit the form if needed
+                            }
+
+                            document.body.appendChild(alertElement);
+                            setTimeout(() => {
+                                alertElement.remove();
+                            }, 3000);
+                        }
+                    </script>
+                    <style>
+                        .alert {
+                            padding: 15px;
+                            margin-top: 10px;
+                            border-radius: 4px;
+                            display: none;
+                        }
+                        .alert-success {
+                            background-color: #4ecdc4;
+                            color: #ffffff;
+                            border: 1px solid #45b7aa;
+                        }
+                        .alert-danger {
+                            background-color: #ff6b6b;
+                            color: #ffffff;
+                            border: 1px solid #ff4757;
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+
+        <div id="teacherprofiles" class="teacher-profiles" style="width: 80%; margin: 20px auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; margin-bottom: 20px;">Teacher Profiles</h2>
+            <div class="teacher-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Jane Smith</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.8/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Machine Learning, AI</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 3</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computer Science</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. John Doe</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.6/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Network Security, Cryptography</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 2</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Information Security</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Emily Chen</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.9/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Data Mining, Big Data Analytics</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 1</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Data Science</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. Michael Johnson</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.7/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Software Engineering, Agile Methodologies</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 0</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Software Engineering</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Sarah Lee</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.5/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Human-Computer Interaction, UX Design</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 1</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computer Science, specialization in HCI</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. Robert Brown</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.4/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Computer Graphics, Virtual Reality</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 4</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computer Engineering</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Lisa Wang</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.7/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Quantum Computing, Cryptography</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 2</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Quantum Information Science</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. David Garcia</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.6/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Natural Language Processing, Computational Linguistics</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 1</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computational Linguistics</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('courseForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const theoryCourses = Array.from(document.querySelectorAll('input[name="theory"]:checked')).map(el => el.value);
+                const labCourses = Array.from(document.querySelectorAll('input[name="lab"]:checked')).map(el => el.value);
+                
+                if (theoryCourses.length !== 4 || labCourses.length !== 2) {
+                    showAlert('Error: Please select exactly 4 theory courses and 2 lab courses.', 'error');
+                    return;
+                }
+                
+                const data = {
+                    theoryCourses: theoryCourses,
+                    labCourses: labCourses
+                };
+                
+                console.log('Selected courses:', data);
+                
+                // Simulating an API call
+                setTimeout(() => {
+                    showAlert('Courses successfully saved!', 'success');
+                }, 500);
+            });
+
+            function showAlert(message, type) {
+                const alertBox = document.createElement('div');
+                alertBox.textContent = message;
+                alertBox.classList.add('popup-alert');
+                alertBox.classList.add(type === 'error' ? 'error' : 'success');
+                document.body.appendChild(alertBox);
+                setTimeout(() => {
+                    alertBox.classList.add('show');
+                }, 10);
+                setTimeout(() => {
+                    alertBox.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(alertBox);
+                    }, 300);
+                }, 3000);
+            }
+
+            // Add this style to your existing <style> tag or in a separate CSS file
+            const style = document.createElement('style');
+            style.textContent = `
+                .popup-alert {
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: white;
+                    padding: 15px;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                }
+                .popup-alert.error {
+                    background-color: #ff4444;
+                }
+                .popup-alert.success {
+                    background-color: #4CAF50;
+                }
+                .popup-alert.show {
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
+
+        <div id="teacherprofiles" class="teacher-profiles" style="width: 80%; margin: 20px auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; margin-bottom: 20px;">Teacher Profiles</h2>
+            <div class="teacher-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Jane Smith</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.8/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Machine Learning, AI</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 3</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computer Science</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. John Doe</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.6/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Network Security, Cryptography</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 2</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Information Security</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Emily Chen</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.9/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Data Mining, Big Data Analytics</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 1</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Data Science</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. Michael Johnson</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.7/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Software Engineering, Agile Methodologies</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 0</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Software Engineering</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Sarah Lee</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.5/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Human-Computer Interaction, UX Design</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 1</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computer Science, specialization in HCI</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. Robert Brown</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.4/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Computer Graphics, Virtual Reality</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 4</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computer Engineering</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Dr. Lisa Wang</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.7/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Quantum Computing, Cryptography</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 2</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Quantum Information Science</p>
+                </div>
+                <div class="teacher-card" style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; transition: all 0.3s ease;">
+                    <h3 style="color: #444; margin-bottom: 10px;">Prof. David Garcia</h3>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Rating:</strong> 4.6/5</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Research:</strong> Natural Language Processing, Computational Linguistics</p>
+                    <p style="color: #666; margin-bottom: 5px;"><strong>Patents:</strong> 1</p>
+                    <p style="color: #666;"><strong>Background:</strong> PhD in Computational Linguistics</p>
+                </div>
+            </div>
+        </div>
+        <div id="feedback" class="feedback-system" style="width: 80%; margin: 20px auto; background-color: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">Feedback System</h2>
+            <p style="color: #34495e; margin-bottom: 15px;">Share your experience and help future students make informed decisions.</p>
+            <form id="feedbackForm">
+                <label for="course" style="display: block; margin-bottom: 10px; color: #2c3e50;">Select Course:</label>
+                <select id="course" name="course" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #bdc3c7; border-radius: 5px; background-color: #ecf0f1; color: #34495e;">
+                    <option value="">Choose a course</option>
+                    <option value="course1">Advanced Algorithms</option>
+                    <option value="course2">Machine Learning</option>
+                    <option value="course3">Database Management</option>
+                    <option value="course4">Computer Networks</option>
+                    <option value="course5">Software Engineering</option>
+                    <option value="course6">Artificial Intelligence</option>
+                </select>
+                <label for="rating" style="display: block; margin-bottom: 10px; color: #2c3e50;">Rating:</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #bdc3c7; border-radius: 5px; background-color: #ecf0f1; color: #34495e;">
+                <label for="comment" style="display: block; margin-bottom: 10px; color: #2c3e50;">Your Feedback:</label>
+                <textarea id="comment" name="comment" rows="4" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ced4da; border-radius: 5px; background-color: #ffffff; color: #495057;"></textarea>
+                <button type="button" onclick="submitFeedback()" style="background-color: #e8491d; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit Feedback</button>
+            </form>
+        </div>
+        <script>
+            // Create a schema for the feedback data
+            const feedbackSchema = {
+                course: String,
+                rating: Number,
+                comment: String,
+                timestamp: Date
+            };
+
+            // Create an array to store feedback data
+            let feedbackDatabase = [];
+
+            function submitFeedback() {
+                var course = document.getElementById('course').value;
+                var rating = document.getElementById('rating').value;
+                var comment = document.getElementById('comment').value;
+                
+                // Create a new feedback object
+                const newFeedback = {
+                    course: course,
+                    rating: parseInt(rating),
+                    comment: comment,
+                    timestamp: new Date()
+                };
+
+                // Add the new feedback to the database
+                feedbackDatabase.push(newFeedback);
+
+                // Log the feedback to console (for demonstration purposes)
+                console.log('Feedback submitted:', newFeedback);
+                console.log('Current database:', feedbackDatabase);
+
+                // Show success alert
+                const alertBox = document.createElement('div');
+                alertBox.textContent = 'Feedback submitted successfully!';
+                alertBox.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 15px;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                `;
+                document.body.appendChild(alertBox);
+                setTimeout(() => {
+                    alertBox.style.opacity = '1';
+                }, 10);
+                setTimeout(() => {
+                    alertBox.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(alertBox);
+                    }, 300);
+                }, 3000);
+
+                // Reset the form
+                document.getElementById('feedbackForm').reset();
+
+                // Update the results
+                updateResults();
+            }
+        </script>
+
+        <div>
+        <div id="results" class="results-section" style="width: 80%; margin: 20px auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; margin-bottom: 20px;">Results</h2>
+            
+            <div id="courseSelectionResults" style="margin-bottom: 30px;">
+                <h3 style="color: #444; margin-bottom: 15px;">Selected Courses</h3>
+                <div id="selectedTheoryCourses">
+                    <h4 style="color: #555; margin-bottom: 10px;">Theory Courses:</h4>
+                    <ul id="theoryList" style="list-style-type: none; padding-left: 0;"></ul>
+                </div>
+                <div id="selectedLabCourses">
+                    <h4 style="color: #555; margin-bottom: 10px;">Lab Courses:</h4>
+                    <ul id="labList" style="list-style-type: none; padding-left: 0;"></ul>
+                </div>
+            </div>
+            
+            <div id="feedbackResults">
+                <h3 style="color: #444; margin-bottom: 15px;">Feedback Results</h3>
+                <div id="feedbackList"></div>
+            </div>
+        </div>
+
+        <script>
+            function updateResults() {
+                // Update course selection results
+                const theoryList = document.getElementById('theoryList');
+                const labList = document.getElementById('labList');
+                
+                theoryList.innerHTML = '';
+                labList.innerHTML = '';
+                
+                const theoryCourses = Array.from(document.querySelectorAll('input[name="theory"]:checked')).map(el => el.nextElementSibling.textContent.trim());
+                const labCourses = Array.from(document.querySelectorAll('input[name="lab"]:checked')).map(el => el.nextElementSibling.textContent.trim());
+                
+                theoryCourses.forEach(course => {
+                    const li = document.createElement('li');
+                    li.textContent = course;
+                    li.style.marginBottom = '5px';
+                    theoryList.appendChild(li);
+                });
+                
+                labCourses.forEach(course => {
+                    const li = document.createElement('li');
+                    li.textContent = course;
+                    li.style.marginBottom = '5px';
+                    labList.appendChild(li);
+                });
+                
+                // Update feedback results
+                const feedbackList = document.getElementById('feedbackList');
+                feedbackList.innerHTML = '';
+                
+                feedbackDatabase.forEach(feedback => {
+                    const feedbackItem = document.createElement('div');
+                    feedbackItem.style.marginBottom = '15px';
+                    feedbackItem.style.padding = '10px';
+                    feedbackItem.style.backgroundColor = '#f8f9fa';
+                    feedbackItem.style.borderRadius = '5px';
+                    
+                    feedbackItem.innerHTML = `
+                        <p><strong>Course:</strong> ${feedback.course}</p>
+                        <p><strong>Rating:</strong> ${feedback.rating}/5</p>
+                        <p><strong>Comment:</strong> ${feedback.comment}</p>
+                        <p><strong>Timestamp:</strong> ${feedback.timestamp.toLocaleString()}</p>
+                    `;
+                    
+                    feedbackList.appendChild(feedbackItem);
+                });
+            }
+
+            // Call updateResults whenever courses are selected or feedback is submitted
+            document.querySelectorAll('input[name="theory"], input[name="lab"]').forEach(input => {
+                input.addEventListener('change', updateResults);
+            });
+
+            // Initial call to populate the results section
+            updateResults();
+        </script>
+        </div>
+    </main>
+</body>
+</html>
+

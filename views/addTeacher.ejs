@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Teacher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+        }
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #35424a;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2c3840;
+        }
+        footer {
+            background-color: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        small {
+            display: block;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Add New Teacher</h1>
+    </header>
+    <main>
+        <div id="successMessage" class="success-message">Teacher added successfully!</div>
+        <form id="addTeacherForm" method="POST" action="/addTeacher">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="teacher[name]" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="teacher[department]" required>
+            </div>
+
+            <div class="form-group">
+                <label for="academicBackground">Academic Background:</label>
+                <textarea id="academicBackground" name="teacher[acedimicBackground]" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="specialization">Subject:</label>
+                <input type="text" id="specialization" name="teacher[subject]" required>
+            </div>
+
+            <div class="form-group">
+                <label for="yearsOfExperience">Years of Experience:</label>
+                <input type="number" id="yearsOfExperience" name="teacher[experience]" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="researchProjects">Initial Research Projects:</label>
+                <textarea id="researchProjects" name="teacher[projects]" rows="4"></textarea>
+                <small>Enter each project on a new line</small>
+            </div>
+
+            <button type="submit">Add Teacher</button>
+        </form>
+    </main>
+    
+    <script>
+        document.getElementById('addTeacherForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            fetch('/addTeacher', {
+                method: 'POST',
+                body: new FormData(this),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    this.reset();
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 3000);
+                } else {
+                    alert('Error adding teacher. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>

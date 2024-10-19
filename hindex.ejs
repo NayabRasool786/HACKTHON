@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection and Teacher Assignment System</title>
+    <style>
+        /* Basic styling */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+        }
+
+        header {
+          background-color: #35424a;
+          color: #ffffff;
+          padding: 1rem;
+          text-align: center;
+        }
+
+      
+        .cta-button {
+          display: inline-block;
+          background-color: #e8491d;
+          color: #ffffff;
+          padding: 10px 20px;
+          text-decoration: none;
+          border-radius: 5px;
+          margin-top: 20px;
+        }
+
+        .features {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 2rem;
+          height: 25vh;
+        }
+
+        .feature {
+          flex-basis: 30%;
+          background-color: #ffffff;
+          padding: 1rem;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          border-radius: 10px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+        .feature-container {
+          margin: 20px;
+          width: 95%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Navbar styling */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #2b2c2e;
+          padding-left: 50px;
+          padding-right: 50px;
+          height: 10vh;
+        }
+
+        .navbar a {
+          color: white;
+          text-decoration: none;
+          padding: 14px 20px;
+        }
+
+        .navbar a:hover {
+          background-color: #575757;
+          border-radius: 5px;
+        }
+
+        .navbar .logo {
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        .navbar .links {
+          display: flex;
+        }
+
+        .navbar .links a {
+          margin-left: 10px;
+        }
+
+        /* Dropdown menu */
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 150px;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+          border-radius: 5px;
+        }
+
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        .logo{
+          height: 60px;
+          width: 60px;
+        }
+
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .links{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .bgi{
+          background-image: url(https://images.shiksha.com/mediadata/images/1547199229phpR42zJc.jpeg);
+          height: 90vh;
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .logo-container{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 10px;
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+          .navbar .links {
+            flex-direction: column;
+            width: 100%;
+          }
+
+          .navbar a {
+            display: block;
+            text-align: center;
+            width: 100%;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img  class="logo" src="https://res.cloudinary.com/ddpe1sf4f/image/upload/v1729273297/logo-removebg-preview_leyedy.png" alt="Logo">
+            <div>
+              <h1>Rajeev Gandhi Memorial</h1>
+              <p>College Of Engineering & Technology</p>
+            </div>
+        </div>
+        <div class="links">
+            <a href="#home">Home</a>
+            <div class="dropdown">
+              <a href="#courses">Courses</a>
+              <div class="dropdown-content">
+                  <a href="#course1">CSE</a>
+                  <a href="#course2">CSE DS</a>
+                  <a href="#course3">CSE AI/ML</a>
+                  <a href="#course3">CSE CS</a>
+                  <a href="#course3">ECE</a>
+                  <a href="#course3">EEE</a>
+                  <a href="#course3">MECH</a>
+                  <a href="#course3">CIVIL</a>
+              </div>
+          </div>
+          <div class="dropdown">
+            <a href="#courses">Rating</a>
+            <div class="dropdown-content">
+                <a href="#course1">⭐⭐⭐⭐⭐</a>
+            </div>
+          </div>
+            
+            <div class="dropdown">
+                <a href="#account">Account</a>
+                <div class="dropdown-content">
+                    <a href="#settings">Settings</a>
+                    <a href="#logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="bgi">
+          <h2>Welcome to Our University's Course Selection Platform</h2>
+          <p>Make informed decisions about your academic journey with our comprehensive course selection and teacher assignment system.</p>
+          <a href="#features" class="cta-button">Start Course Selection</a>
+        </div>
+
+        <div id="features" class="feature-container">
+          <div class="features">
+              <div class="feature">
+                  <h3>Course Selection</h3>
+                  <p>Choose 4 theory courses and 2 lab courses per semester from a wide range of options.</p>
+              </div>
+              <div class="feature">
+                  <h3>Teacher Profiles</h3>
+                  <p>Access detailed teacher information including ratings, research projects, patents, and academic background.</p>
+              </div>
+              <div class="feature">
+                  <h3>Feedback System</h3>
+                  <p>Share your experience and help future students make informed decisions.</p>
+              </div>
+          </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= teacher.name %> - Feedback Overview</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1><%= teacher.name %> - Feedback Overview</h1>
+    </header>
+    <main>
+        <section class="average-ratings">
+            <h2>Average Ratings</h2>
+            <ul>
+                <li><strong>Research Quality:</strong> <%= averageRatings.research.toFixed(1) %> / 5</li>
+                <li><strong>Teaching Effectiveness:</strong> <%= averageRatings.teaching.toFixed(1) %> / 5</li>
+                <li><strong>Innovation (Patents):</strong> <%= averageRatings.patents.toFixed(1) %> / 5</li>
+                <li><strong>Communication Skills:</strong> <%= averageRatings.communication.toFixed(1) %> / 5</li>
+                <li><strong>Overall Rating:</strong> <%= averageRatings.overall.toFixed(1) %> / 5</li>
+            </ul>
+        </section>
+
+        <section class="feedback-list">
+            <h2>Student Feedback</h2>
+            <% if (feedbackList && feedbackList.length > 0) { %>
+                <ul>
+                    <% feedbackList.forEach(feedback => { %>
+                        <li class="feedback-item">
+                            <h3>Feedback from <%= feedback.studentName %></h3>
+                            <p><strong>Category:</strong> <%= feedback.category %></p>
+                            <p><strong>Research Quality:</strong> <%= feedback.researchRating %> / 5</p>
+                            <p><strong>Teaching Effectiveness:</strong> <%= feedback.teachingRating %> / 5</p>
+                            <p><strong>Innovation (Patents):</strong> <%= feedback.patentsRating %> / 5</p>
+                            <p><strong>Communication Skills:</strong> <%= feedback.communicationRating %> / 5</p>
+                            <p><strong>Overall Rating:</strong> <%= feedback.overallRating %> / 5</p>
+                            <p><strong>Comments:</strong> <%= feedback.comments %></p>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>No feedback available for this teacher.</p>
+            <% } %>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> University Name. All rights reserved.</p>
+    </footer>
+    <script src="/js/teacherFeedback.js"></script>
+</body>
+</html>

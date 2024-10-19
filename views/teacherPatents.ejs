@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher's Patents</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Teacher's Patents</h1>
+    </header>
+    <main>
+        <h2>Patents Held Over the Last Four Years</h2>
+        <% if (patents && patents.length > 0) { %>
+            <ul class="patent-list">
+                <% patents.forEach(patent => { %>
+                    <li class="patent-item">
+                        <h3><%= patent.title %></h3>
+                        <p>Patent Number: <%= patent.patentNumber %></p>
+                        <p>Issue Date: <%= new Date(patent.issueDate).toLocaleDateString() %></p>
+                        <p>Description: <%= patent.description %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No patents found for this teacher in the last four years.</p>
+        <% } %>
+    </main>
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> School Name. All rights reserved.</p>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

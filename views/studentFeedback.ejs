@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Feedback History</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Your Feedback History</h1>
+    </header>
+    <main>
+        <% if (feedbackList && feedbackList.length > 0) { %>
+            <ul class="feedback-list">
+                <% feedbackList.forEach(feedback => { %>
+                    <li class="feedback-item">
+                        <h2>Feedback for <%= feedback.teacherName %></h2>
+                        <p><strong>Date Submitted:</strong> <%= new Date(feedback.dateSubmitted).toLocaleDateString() %></p>
+                        <p><strong>Category:</strong> <%= feedback.category %></p>
+                        <h3>Ratings:</h3>
+                        <ul>
+                            <li><strong>Research Quality:</strong> <%= feedback.researchRating %> / 5</li>
+                            <li><strong>Teaching Effectiveness:</strong> <%= feedback.teachingRating %> / 5</li>
+                            <li><strong>Innovation (Patents):</strong> <%= feedback.patentsRating %> / 5</li>
+                            <li><strong>Communication Skills:</strong> <%= feedback.communicationRating %> / 5</li>
+                            <li><strong>Overall Rating:</strong> <%= feedback.overallRating %> / 5</li>
+                        </ul>
+                        <h3>Comments:</h3>
+                        <p><%= feedback.comments %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>You haven't submitted any feedback yet.</p>
+        <% } %>
+    </main>
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> University Name. All rights reserved.</p>
+    </footer>
+    <script src="/js/studentFeedback.js"></script>
+</body>
+</html>

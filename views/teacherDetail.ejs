@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= teacher.name %> - Teacher Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #444;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .teacher-info p {
+            margin: 10px 0;
+        }
+        .research-projects p {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <header>
+            <h1><%= teacher.name %> - Teacher Profile</h1>
+        </header>
+        <main>
+            <section class="teacher-info">
+                <h2>Academic Background</h2>
+                <p><strong>Department:</strong> <%= teacher.department %></p>
+                <p><strong>Academic Background:</strong> <%= teacher.acedimicBackground %></p>
+                <p><strong>Subject:</strong> <%= teacher.subject %></p>
+                <p><strong>Years of Experience:</strong> <%= teacher.experience %></p>
+            </section>
+
+            <section class="research-projects">
+                <h2>Research Projects</h2>
+                <p><%= teacher.projects %></p>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; <%= new Date().getFullYear() %> University Name. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="/js/teacherProfile.js"></script>
+</body>
+</html>

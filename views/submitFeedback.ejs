@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback for <%= teacher.name %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Submit Feedback for <%= teacher.name %></h1>
+    </header>
+    <main>
+        <section class="teacher-info">
+            <h2><%= teacher.name %></h2>
+            <p><strong>Department:</strong> <%= teacher.department %></p>
+            <p><strong>Specialization:</strong> <%= teacher.specialization %></p>
+        </section>
+
+        <section class="feedback-form">
+            <h2>Feedback Form</h2>
+            <form action="/feedback" method="POST">
+                <input type="hidden" name="teacherId" value="<%= teacher.id %>">
+                
+                <div class="form-group">
+                    <label for="researchRating">Research Quality:</label>
+                    <input type="number" id="researchRating" name="researchRating" min="1" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="teachingRating">Teaching Effectiveness:</label>
+                    <input type="number" id="teachingRating" name="teachingRating" min="1" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="patentsRating">Innovation (Patents):</label>
+                    <input type="number" id="patentsRating" name="patentsRating" min="1" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="communicationRating">Communication Skills:</label>
+                    <input type="number" id="communicationRating" name="communicationRating" min="1" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="overallRating">Overall Rating:</label>
+                    <input type="number" id="overallRating" name="overallRating" min="1" max="5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Additional Comments:</label>
+                    <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Feedback Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="general">General</option>
+                        <option value="course">Course-specific</option>
+                        <option value="research">Research-related</option>
+                        <option value="mentorship">Mentorship</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> University Name. All rights reserved.</p>
+    </footer>
+    <script src="/js/submitFeedback.js"></script>
+</body>
+</html>
